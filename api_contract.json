@@ -7,7 +7,7 @@
         "methods": [
           {
             "method": "GET",
-            "description": "Get a list of user",
+            "description": "Get a list of users",
             "responses": [
               {
                 "code": 200,
