@@ -15,8 +15,7 @@ jobs:
 
     - name: Run Script to Generate Wiki
       run: |
-        # Replace this command with your script or tool that generates Markdown from JSON
-        # Example: python generate_wiki.py
+        python generate_wiki.py
 
     - name: Commit and Push Markdown Output
       run: |
