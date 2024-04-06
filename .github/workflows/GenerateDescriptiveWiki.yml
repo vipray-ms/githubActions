@@ -13,6 +13,17 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install openai --upgrade
+        # pip install -r requirements.txt  # Replace with your requirements file path
+        
     - name: Run Script to Generate Wiki
       env:
           API_KEY: ${{ secrets.azureOpenAI_key }}
