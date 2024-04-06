@@ -46,7 +46,11 @@ def main():
     stop=None
     )
 
-    print(completion.choices[0].message.content)
+    #print(completion.choices[0].message.content)
+    # Open the file in write mode
+    with open('descriptive_wiki.md', 'w') as f:
+        # Write the variable's value to the file
+        f.write(completion.choices[0].message.content)
 
 if __name__ == '__main__':
     main()
