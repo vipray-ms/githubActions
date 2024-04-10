@@ -46,7 +46,7 @@
         "properties": {
           "id": { "type": "integer" },
           "name": { "type": "string" },
-          "email": { "type": "string", "format": "email" }
+          "email": { "type": "string", "format": "email" },
           "phoneNumber": { "type": "string", "format": "number" }
         }
       }
