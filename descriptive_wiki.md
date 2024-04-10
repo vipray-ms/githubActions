@@ -1,105 +1,106 @@
 ## API Contract Details:
 
-The following is a detailed description of the Sample API version 1.0. This API consists of a single endpoint `/users` that allows you to get a list of users and create a new user.
+The following document describes the Sample API version 1.0.
 
 ### Endpoints:
 
-#### `/users`
+#### GET /users
 
-This endpoint allows you to get a list of users and create a new user.
+Get a list of users.
 
-##### `GET`
+##### Responses
 
-This method allows you to get a list of users.
+| Code | Description | Body |
+| --- | --- | --- |
+| 200 | Success | `application/json`, `User[]` |
 
-**Description:** Get a list of users.
+#### POST /users
 
-**Responses:**
+Create a new user.
 
-- `200` Success: Returns a list of users in JSON format.
+##### Parameters
 
-##### `POST`
+| Name | In | Type | Schema |
+| --- | --- | --- | --- |
+| user | Body | Object | `User` |
 
-This method allows you to create a new user.
+##### Responses
 
-**Description:** Create a new user.
-
-**Parameters:**
-
-- `user` (type: object, in: body, schema: User) - The details of the user to be created.
-
-**Responses:**
-
-- `201` User created successfully.
+| Code | Description |
+| --- | --- |
+| 201 | User created successfully |
 
 ### Definitions:
 
 #### User
 
-This is the data model for the user object.
-
-**Properties:**
-
-- `id` (type: integer) - The unique identifier for the user.
-- `name` (type: string) - The name of the user.
-- `email` (type: string, format: email) - The email address of the user.
+| Property | Type | Description |
+| --- | --- | --- |
+| id | Integer | The user's ID |
+| name | String | The user's name |
+| email | String | The user's email address |
+| phoneNumber | String | The user's phone number |
 
 ## Descriptive Wiki:
 
-The Sample API allows you to get a list of users and create a new user. To get a list of users, make a `GET` request to `/users`. The response will be a list of user objects in JSON format. To create a new user, make a `POST` request to `/users` with the details of the user in the request body.
+### GET /users
 
-The `POST` request requires a `user` object in the request body. The `user` object must contain the following properties:
+This endpoint returns a list of users in JSON format. To use this endpoint, simply send a GET request to the `/users` path. The response will contain an array of user objects, where each object represents a single user. 
 
-- `name` - The name of the user.
-- `email` - The email address of the user.
-
-The `id` property is not required and will be generated automatically by the API.
-
-Example usage:
-
-**Get a list of users**
-
-Request:
+#### Example
 
 ```
-GET /users
+GET /users HTTP/1.1
+Host: example.com
 ```
-
-Response:
 
 ```
 HTTP/1.1 200 OK
 Content-Type: application/json
 
 [
-  {
-    "id": 1,
-    "name": "John Doe",
-    "email": "john.doe@example.com"
-  },
-  {
-    "id": 2,
-    "name": "Jane Doe",
-    "email": "jane.doe@example.com"
-  }
+    {
+        "id": 1,
+        "name": "John Doe",
+        "email": "johndoe@example.com",
+        "phoneNumber": "123-456-7890"
+    },
+    {
+        "id": 2,
+        "name": "Jane Doe",
+        "email": "janedoe@example.com",
+        "phoneNumber": "555-555-5555"
+    }
 ]
 ```
 
-**Create a new user**
+### POST /users
 
-Request:
+This endpoint creates a new user. To use this endpoint, send a POST request to the `/users` path, with a request body containing a JSON object that represents the user to be created.
+
+#### Parameters
+
+The `user` parameter is required and should contain a JSON object with the following properties:
+
+| Property | Type | Description |
+| --- | --- | --- |
+| name | String | The user's name |
+| email | String | The user's email address |
+| phoneNumber | String | The user's phone number |
+
+#### Example
 
 ```
-POST /users
+POST /users HTTP/1.1
+Host: example.com
 Content-Type: application/json
 
 {
-  "name": "Bob Smith",
-  "email": "bob.smith@example.com"
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "phoneNumber": "123-456-7890"
 }
 ```
-
-Response:
 
 ```
 HTTP/1.1 201 Created
