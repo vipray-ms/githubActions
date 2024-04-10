@@ -1,54 +1,85 @@
 {
-    "title": "Sample API",
-    "version": "1.0",
-    "endpoints": [
-      {
-        "path": "/users",
-        "methods": [
-          {
-            "method": "GET",
-            "description": "Get a list of users",
-            "responses": [
-              {
-                "code": 200,
-                "description": "Success",
-                "body": {
-                  "type": "application/json",
-                  "schema": "User[]"
-                }
-              }
-            ]
+  "endpoints": {
+    "/users": {
+      "description": "Endpoint to manage user data",
+      "methods": ["GET", "POST", "PUT", "DELETE"],
+      "requestFormats": {
+        "GET": {
+          "params": ["id"],
+          "description": "Retrieve user data by ID"
+        },
+        "POST": {
+          "body": {
+            "name": "string",
+            "email": "string",
+            "password": "string"
           },
-          {
-            "method": "POST",
-            "description": "Create a new user",
-            "parameters": [
-              {
-                "name": "user",
-                "in": "body",
-                "type": "object",
-                "schema": "User"
-              }
-            ],
-            "responses": [
-              {
-                "code": 201,
-                "description": "User created successfully"
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    "definitions": {
-      "User": {
-        "type": "object",
-        "properties": {
-          "id": { "type": "integer" },
-          "name": { "type": "string" },
-          "email": { "type": "string", "format": "email" },
-          "phoneNumber": { "type": "string", "format": "number" }
+          "description": "Create a new user"
+        },
+        "PUT": {
+          "params": ["id"],
+          "body": {
+            "name": "string",
+            "email": "string",
+            "password": "string"
+          },
+          "description": "Update an existing user"
+        },
+        "DELETE": {
+          "params": ["id"],
+          "description": "Delete a user by ID"
         }
+      },
+      "responseFormats": {
+        "GET": {
+          "200": {
+            "id": "string",
+            "name": "string",
+            "email": "string"
+          },
+          "404": {
+            "message": "string"
+          }
+        },
+        "POST": {
+          "201": {
+            "id": "string",
+            "message": "string"
+          },
+          "400": {
+            "message": "string"
+          }
+        },
+        "PUT": {
+          "200": {
+            "message": "string"
+          },
+          "404": {
+            "message": "string"
+          }
+        },
+        "DELETE": {
+          "200": {
+            "message": "string"
+          },
+          "404": {
+            "message": "string"
+          }
+        }
+      },
+      "errorHandling": {
+        "400": "Bad request - Missing or invalid parameters",
+        "401": "Unauthorized - Authentication required",
+        "404": "Not found - Resource not found",
+        "500": "Internal server error - Something went wrong on our end"
+      },
+      "authentication": true,
+      "authorization": true,
+      "rateLimiting": {
+        "limit": 100,
+        "interval": "hour",
+        "message": "Rate limit exceeded, please try again later"
       }
     }
-  }  
+  }
+}
