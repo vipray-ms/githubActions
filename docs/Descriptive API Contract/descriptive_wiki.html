@@ -4,72 +4,161 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.2.1">
 <title data-rh="true">Descriptive API Spec | API Contract Wiki</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://vipray-ms.github.io/githubActions/docs/Descriptive API Contract/descriptive_wiki"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Descriptive API Spec | API Contract Wiki"><meta data-rh="true" name="description" content="API Contract Details:"><meta data-rh="true" property="og:description" content="API Contract Details:"><link data-rh="true" rel="canonical" href="https://vipray-ms.github.io/githubActions/docs/Descriptive API Contract/descriptive_wiki"><link data-rh="true" rel="alternate" href="https://vipray-ms.github.io/githubActions/docs/Descriptive API Contract/descriptive_wiki" hreflang="en"><link data-rh="true" rel="alternate" href="https://vipray-ms.github.io/githubActions/docs/Descriptive API Contract/descriptive_wiki" hreflang="x-default"><link rel="stylesheet" href="/githubActions/assets/css/styles.487c242f.css">
-<script src="/githubActions/assets/js/runtime~main.2bfc06b1.js" defer="defer"></script>
+<script src="/githubActions/assets/js/runtime~main.5fc649e4.js" defer="defer"></script>
 <script src="/githubActions/assets/js/main.20ca567f.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/githubActions/"><b class="navbar__title text--truncate">API Contract Wiki</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/githubActions/docs/intro">Documentation</a></div><div class="navbar__items navbar__items--right"><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/githubActions/docs/intro">Tutorial Intro</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/githubActions/docs/Descriptive API Contract/descriptive_wiki">Descriptive API Contract</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/githubActions/docs/Descriptive API Contract/descriptive_wiki">Descriptive API Spec</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/githubActions/docs/Json API Contract/json_wiki">Json API Contract</a></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/githubActions/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Descriptive API Contract</span><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Descriptive API Spec</span><meta itemprop="position" content="2"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><h1>Descriptive API Spec</h1>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="api-contract-details">API Contract Details:<a href="#api-contract-details" class="hash-link" aria-label="Direct link to API Contract Details:" title="Direct link to API Contract Details:">​</a></h2>
-<p>The API contract describes an endpoint that manages user data. The endpoint supports the following HTTP methods: GET, POST, PUT, and DELETE. The endpoint also supports request and response formats for each method, and includes error handling, authentication, authorization, and rate limiting.</p>
+<p>The following API Contract describes an endpoint <code>/visitors</code> that can be used to manage visitor data. This endpoint supports the HTTP methods <code>GET</code>, <code>POST</code>, <code>PUT</code>, and <code>DELETE</code>. The endpoint accepts and returns data in JSON format.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="endpoints">Endpoints:<a href="#endpoints" class="hash-link" aria-label="Direct link to Endpoints:" title="Direct link to Endpoints:">​</a></h3>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="get-users">GET /users<a href="#get-users" class="hash-link" aria-label="Direct link to GET /users" title="Direct link to GET /users">​</a></h4>
-<p>This endpoint retrieves user data by ID.</p>
-<p><strong>Parameters:</strong></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="visitors"><code>/visitors</code><a href="#visitors" class="hash-link" aria-label="Direct link to visitors" title="Direct link to visitors">​</a></h4>
+<p>This endpoint is used to manage visitor data.</p>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="methods">Methods:<a href="#methods" class="hash-link" aria-label="Direct link to Methods:" title="Direct link to Methods:">​</a></h5>
 <ul>
-<li><code>id</code> (required): The ID of the user to retrieve.</li>
+<li><code>GET</code>: Retrieve visitor data by ID</li>
+<li><code>POST</code>: Create a new visitor</li>
+<li><code>PUT</code>: Update an existing visitor</li>
+<li><code>DELETE</code>: Delete a visitor by ID</li>
 </ul>
-<p><strong>Responses:</strong></p>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="request-formats">Request Formats:<a href="#request-formats" class="hash-link" aria-label="Direct link to Request Formats:" title="Direct link to Request Formats:">​</a></h5>
 <ul>
-<li><code>200 OK</code>: Returns the requested user data in JSON format.</li>
-<li><code>404 Not Found</code>: Returns an error message if the requested user cannot be found.</li>
-</ul>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="post-users">POST /users<a href="#post-users" class="hash-link" aria-label="Direct link to POST /users" title="Direct link to POST /users">​</a></h4>
-<p>This endpoint creates a new user.</p>
-<p><strong>Request Body:</strong></p>
+<li>
+<p><code>GET</code>: Retrieve visitor data by ID</p>
 <ul>
-<li><code>name</code> (required): The name of the user.</li>
-<li><code>email</code> (required): The email address of the user.</li>
-<li><code>password</code> (required): The password for the user.</li>
-</ul>
-<p><strong>Responses:</strong></p>
+<li>Params:<!-- -->
 <ul>
-<li><code>201 Created</code>: Returns a message indicating that the user was successfully created.</li>
-<li><code>400 Bad Request</code>: Returns an error message if the request is missing or has invalid parameters.</li>
+<li><code>id</code>: ID of the visitor to retrieve</li>
 </ul>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="put-users">PUT /users<a href="#put-users" class="hash-link" aria-label="Direct link to PUT /users" title="Direct link to PUT /users">​</a></h4>
-<p>This endpoint updates an existing user.</p>
-<p><strong>Parameters:</strong></p>
+</li>
+<li>Description: Retrieves visitor data by ID</li>
+</ul>
+</li>
+<li>
+<p><code>POST</code>: Create a new visitor</p>
 <ul>
-<li><code>id</code> (required): The ID of the user to update.</li>
-</ul>
-<p><strong>Request Body:</strong></p>
+<li>Body:<!-- -->
 <ul>
-<li><code>name</code> (optional): The updated name of the user.</li>
-<li><code>email</code> (optional): The updated email address of the user.</li>
-<li><code>password</code> (optional): The updated password for the user.</li>
+<li><code>name</code>: String representing the name of the visitor</li>
+<li><code>email</code>: String representing the email of the visitor</li>
+<li><code>password</code>: String representing the password of the visitor</li>
 </ul>
-<p><strong>Responses:</strong></p>
+</li>
+<li>Description: Creates a new visitor with the given data</li>
+</ul>
+</li>
+<li>
+<p><code>PUT</code>: Update an existing visitor</p>
 <ul>
-<li><code>200 OK</code>: Returns a message indicating that the user was successfully updated.</li>
-<li><code>404 Not Found</code>: Returns an error message if the requested user cannot be found.</li>
-</ul>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="delete-users">DELETE /users<a href="#delete-users" class="hash-link" aria-label="Direct link to DELETE /users" title="Direct link to DELETE /users">​</a></h4>
-<p>This endpoint deletes a user by ID.</p>
-<p><strong>Parameters:</strong></p>
+<li>Params:<!-- -->
 <ul>
-<li><code>id</code> (required): The ID of the user to delete.</li>
+<li><code>id</code>: ID of the visitor to update</li>
 </ul>
-<p><strong>Responses:</strong></p>
+</li>
+<li>Body:<!-- -->
 <ul>
-<li><code>200 OK</code>: Returns a message indicating that the user was successfully deleted.</li>
-<li><code>404 Not Found</code>: Returns an error message if the requested user cannot be found.</li>
+<li><code>name</code>: String representing the updated name of the visitor</li>
+<li><code>email</code>: String representing the updated email of the visitor</li>
+<li><code>password</code>: String representing the updated password of the visitor</li>
 </ul>
+</li>
+<li>Description: Updates the visitor with the given ID with the updated data</li>
+</ul>
+</li>
+<li>
+<p><code>DELETE</code>: Delete a visitor by ID</p>
+<ul>
+<li>Params:<!-- -->
+<ul>
+<li><code>id</code>: ID of the visitor to delete</li>
+</ul>
+</li>
+<li>Description: Deletes the visitor with the given ID</li>
+</ul>
+</li>
+</ul>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="response-formats">Response Formats:<a href="#response-formats" class="hash-link" aria-label="Direct link to Response Formats:" title="Direct link to Response Formats:">​</a></h5>
+<ul>
+<li>
+<p><code>GET</code>: Retrieve visitor data by ID</p>
+<ul>
+<li><code>200</code>: Success. Returns the visitor data in the following format:<!-- -->
+<ul>
+<li><code>id</code>: String representing the ID of the visitor</li>
+<li><code>name</code>: String representing the name of the visitor</li>
+<li><code>email</code>: String representing the email of the visitor</li>
+</ul>
+</li>
+<li><code>404</code>: Not found. Returns an error message in the following format:<!-- -->
+<ul>
+<li><code>message</code>: String representing the error message</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>POST</code>: Create a new visitor</p>
+<ul>
+<li><code>201</code>: Success. Returns the following message:<!-- -->
+<ul>
+<li><code>id</code>: String representing the ID of the newly created visitor</li>
+<li><code>message</code>: String representing the success message</li>
+</ul>
+</li>
+<li><code>400</code>: Bad request. Returns an error message in the following format:<!-- -->
+<ul>
+<li><code>message</code>: String representing the error message</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>PUT</code>: Update an existing visitor</p>
+<ul>
+<li><code>200</code>: Success. Returns the following message:<!-- -->
+<ul>
+<li><code>message</code>: String representing the success message</li>
+</ul>
+</li>
+<li><code>404</code>: Not found. Returns an error message in the following format:<!-- -->
+<ul>
+<li><code>message</code>: String representing the error message</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>DELETE</code>: Delete a visitor by ID</p>
+<ul>
+<li><code>200</code>: Success. Returns the following message:<!-- -->
+<ul>
+<li><code>message</code>: String representing the success message</li>
+</ul>
+</li>
+<li><code>404</code>: Not found. Returns an error message in the following format:<!-- -->
+<ul>
+<li><code>message</code>: String representing the error message</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="error-handling">Error Handling:<a href="#error-handling" class="hash-link" aria-label="Direct link to Error Handling:" title="Direct link to Error Handling:">​</a></h5>
+<ul>
+<li><code>400</code>: Bad request. Missing or invalid parameters.</li>
+<li><code>401</code>: Unauthorized. Authentication required.</li>
+<li><code>404</code>: Not found. Resource not found.</li>
+<li><code>500</code>: Internal server error. Something went wrong on our end.</li>
+</ul>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="authentication">Authentication:<a href="#authentication" class="hash-link" aria-label="Direct link to Authentication:" title="Direct link to Authentication:">​</a></h5>
+<p>Authentication is required to access this endpoint.</p>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="authorization">Authorization:<a href="#authorization" class="hash-link" aria-label="Direct link to Authorization:" title="Direct link to Authorization:">​</a></h5>
+<p>Authorization is required to access this endpoint.</p>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="rate-limiting">Rate Limiting:<a href="#rate-limiting" class="hash-link" aria-label="Direct link to Rate Limiting:" title="Direct link to Rate Limiting:">​</a></h5>
+<p>A rate limit of 100 requests per hour is enforced for this endpoint. If the limit is exceeded, a message will be returned stating that the rate limit has been exceeded and to try again later.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="definitions">Definitions:<a href="#definitions" class="hash-link" aria-label="Direct link to Definitions:" title="Direct link to Definitions:">​</a></h3>
-<p>There are no definitions or data models used in the API contract.</p>
+<p>There are no definitions or data models used in this API contract.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="descriptive-wiki">Descriptive Wiki:<a href="#descriptive-wiki" class="hash-link" aria-label="Direct link to Descriptive Wiki:" title="Direct link to Descriptive Wiki:">​</a></h2>
-<p>The API contract provides an endpoint to manage user data with support for the HTTP methods GET, POST, PUT, and DELETE. The GET method retrieves user data by ID, while the POST method creates a new user with the specified name, email, and password. The PUT method updates an existing user with the specified ID, and the DELETE method deletes a user with the specified ID.</p>
-<p>Each method has specific parameters and responses, such as the ID of the user to retrieve or update, and error messages if the user cannot be found or the request is invalid. The endpoint also supports authentication and authorization, as well as rate limiting to prevent abuse.</p>
-<p>To use the endpoint, clients can send requests to the specified path with the appropriate HTTP method and parameters, and receive responses in JSON format. Examples of valid requests and expected responses can be found in the API documentation.</p>
-<p>Overall, the API contract provides a clear and structured interface for managing user data with robust error handling and security features.</p></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/githubActions/docs/intro"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Tutorial Intro</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/githubActions/docs/Json API Contract/json_wiki"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">JSON API Spec</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#api-contract-details" class="table-of-contents__link toc-highlight">API Contract Details:</a><ul><li><a href="#endpoints" class="table-of-contents__link toc-highlight">Endpoints:</a></li><li><a href="#definitions" class="table-of-contents__link toc-highlight">Definitions:</a></li></ul></li><li><a href="#descriptive-wiki" class="table-of-contents__link toc-highlight">Descriptive Wiki:</a></li></ul></div></div></div></div></main></div></div></div></div>
+<p>The <code>/visitors</code> endpoint can be used to manage visitor data. This endpoint supports the HTTP methods <code>GET</code>, `POST</p></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/githubActions/docs/intro"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Tutorial Intro</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/githubActions/docs/Json API Contract/json_wiki"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">JSON API Spec</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#api-contract-details" class="table-of-contents__link toc-highlight">API Contract Details:</a><ul><li><a href="#endpoints" class="table-of-contents__link toc-highlight">Endpoints:</a></li><li><a href="#definitions" class="table-of-contents__link toc-highlight">Definitions:</a></li></ul></li><li><a href="#descriptive-wiki" class="table-of-contents__link toc-highlight">Descriptive Wiki:</a></li></ul></div></div></div></div></main></div></div></div></div>
 </body>
 </html>
