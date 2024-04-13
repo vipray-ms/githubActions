@@ -40,6 +40,8 @@ jobs:
         git push
         
     - name: Deploy Docusaurus to gh-pages
+      env:
+          GIT_USER: "vipray-ms"
       run: |
        cd api-wiki
        npm install
