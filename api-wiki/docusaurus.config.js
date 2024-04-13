@@ -19,8 +19,9 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'Microsoft', // Usually your GitHub org/user name.
+  organizationName: 'vipray-ms', // Usually your GitHub org/user name.
   projectName: 'githubActions', // Usually your repo name.
+  trailingSlash: false,
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
