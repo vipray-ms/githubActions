@@ -1,107 +1,92 @@
 ## API Contract Details:
 
-The API contract specifies an endpoint for managing user data. The endpoint supports four HTTP methods: GET, POST, PUT, and DELETE. 
-
 ### Endpoints:
-
 #### /users
+- **Description:** Endpoint to manage user data
+- **Methods:** GET, POST, PUT, DELETE
 
-**Description:** Endpoint to manage user data.
-
-**Methods:** GET, POST, PUT, DELETE
-
-**Request Formats:**
-
-- **GET:** Retrieve user data by ID
-  - Params:
-    - id (string): The ID of the user to retrieve
-  - Description: This method retrieves user data by the user's ID.
-
-- **POST:** Create a new user
-  - Body:
-    - name (string): The user's name
-    - email (string): The user's email address
-    - password (string): The user's password
-  - Description: This method creates a new user.
-
-- **PUT:** Update an existing user
-  - Params:
-    - id (string): The ID of the user to update
-  - Body:
-    - name (string): The user's name
-    - email (string): The user's email address
-    - password (string): The user's password
-  - Description: This method updates an existing user.
-
-- **DELETE:** Delete a user by ID
-  - Params:
-    - id (string): The ID of the user to delete
-  - Description: This method deletes a user by the user's ID.
-
-**Response Formats:**
-
-- **GET:**
-  - 200:
-    - id (string): The ID of the user
-    - name (string): The user's name
-    - email (string): The user's email address
-  - 404:
-    - message (string): The error message
-  - Description: This response returns user data if the user is found, or an error message if the user is not found.
-
-- **POST:**
-  - 201:
-    - id (string): The ID of the new user
-    - message (string): The success message
-  - 400:
-    - message (string): The error message
-  - Description: This response creates a new user if the request is successful, or returns an error message if the request is unsuccessful.
-
-- **PUT:**
-  - 200:
-    - message (string): The success message
-  - 404:
-    - message (string): The error message
-  - Description: This response updates an existing user if the request is successful, or returns an error message if the request is unsuccessful.
-
-- **DELETE:**
-  - 200:
-    - message (string): The success message
-  - 404:
-    - message (string): The error message
-  - Description: This response deletes a user if the request is successful, or returns an error message if the request is unsuccessful.
-
-**Error Handling:**
-
-- 400: Bad request - Missing or invalid parameters
-- 401: Unauthorized - Authentication required
-- 404: Not found - Resource not found
-- 500: Internal server error - Something went wrong on our end
-
-**Authentication:** True
-
-**Authorization:** True
-
-**Rate Limiting:**
-
-- Limit: 100 requests per hour
-- Interval: Hour
-- Message: Rate limit exceeded, please try again later
+#### Request Formats:
+##### GET
+- **Description:** Retrieve user data by ID
+- **Params:**
+  - id (required): string - The ID of the user to retrieve
+  
+##### POST
+- **Description:** Create a new user
+- **Body:**
+  - name (required): string - The name of the new user
+  - email (required): string - The email of the new user
+  - password (required): string - The password of the new user
+  
+##### PUT
+- **Description:** Update an existing user
+- **Params:**
+  - id (required): string - The ID of the user to update
+- **Body:**
+  - name (optional): string - The updated name of the user
+  - email (optional): string - The updated email of the user
+  - password (optional): string - The updated password of the user
+  
+##### DELETE
+- **Description:** Delete a user by ID
+- **Params:**
+  - id (required): string - The ID of the user to delete
+  
+#### Response Formats:
+##### GET
+- **200:**
+  - id: string - The ID of the retrieved user
+  - name: string - The name of the retrieved user
+  - email: string - The email of the retrieved user
+- **404:**
+  - message: string - The error message for a user not found error
+  
+##### POST
+- **201:**
+  - id: string - The ID of the newly created user
+  - message: string - A success message for the creation of the new user
+- **400:**
+  - message: string - The error message for a bad request error
+  
+##### PUT
+- **200:**
+  - message: string - A success message for the update of the user
+- **404:**
+  - message: string - The error message for a user not found error
+  
+##### DELETE
+- **200:**
+  - message: string - A success message for the deletion of the user
+- **404:**
+  - message: string - The error message for a user not found error
+  
+#### Error Handling:
+- **400:** Bad request - Missing or invalid parameters
+- **401:** Unauthorized - Authentication required
+- **404:** Not found - Resource not found
+- **500:** Internal server error - Something went wrong on our end
+  
+#### Authentication:
+- **True:** Authentication is required to access this endpoint
+  
+#### Authorization:
+- **True:** Authorization is required to access this endpoint
+  
+#### Rate Limiting:
+- **Limit:** 100 requests per hour
+- **Interval:** Hourly
+- **Message:** Rate limit exceeded, please try again later
 
 ### Definitions:
-
-There are no data models or definitions used in this API contract.
+{No definitions or data models used in the API contract}
 
 ## Descriptive Wiki:
 
-#### /users
+### /users
+The `/users` endpoint is used to manage user data. It supports the following methods: GET, POST, PUT, and DELETE. 
 
-The `/users` endpoint is used for managing user data. This endpoint supports four HTTP methods: GET, POST, PUT, and DELETE. 
+#### GET
+The `GET` method is used to retrieve user data by ID. The required parameter is `id`, which is the ID of the user to retrieve. The response will return the user's ID, name, and email in a `200` response code. If the user is not found, a `404` response code will be returned with an error message.
 
-##### GET
-
-The GET method is used to retrieve user data by the user's ID. The `id` parameter is required to retrieve user data. If the user is found, the response will include the user's ID, name, and email address. If the user is not found, the response will include an error message.
-
-##### POST
-
-The POST method is used to create a
+#### POST
+The `POST` method is used to create a new user. The required parameters are `name`, `email`, and `password`, which are the name, email, and password of the new user. The response will return the ID of the newly created user and a success message in a `201` response code. If there is a bad request, a `400` response code will be returned
