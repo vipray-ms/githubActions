@@ -1,120 +1,107 @@
 ## API Contract Details:
 
-The following is an API contract for managing user data. The API supports the HTTP methods GET, POST, PUT, and DELETE. It also includes request and response formats, error handling, authentication, authorization, and rate limiting.
+The API contract specifies an endpoint for managing user data. The endpoint supports four HTTP methods: GET, POST, PUT, and DELETE. 
 
 ### Endpoints:
 
 #### /users
 
-- Methods: GET, POST, PUT, DELETE
-- Description: Endpoint to manage user data
-- Parameters:
-  - GET: id (optional) - Retrieve user data by ID
-  - POST: body - Create a new user with properties name, email, and password
-  - PUT: id (required), body - Update an existing user with properties name, email, and password
-  - DELETE: id (required) - Delete a user by ID
-- Responses:
-  - GET:
-    - 200: Returns user data with properties id, name, and email
-    - 404: Returns an error message if the user is not found
-  - POST:
-    - 201: Returns a message confirming the user creation
-    - 400: Returns an error message if the request body is missing or invalid
-  - PUT:
-    - 200: Returns a message confirming the user update
-    - 404: Returns an error message if the user is not found
-  - DELETE:
-    - 200: Returns a message confirming the user deletion
-    - 404: Returns an error message if the user is not found
-- Error Handling:
-  - 400: Bad request - Missing or invalid parameters
-  - 401: Unauthorized - Authentication required
-  - 404: Not found - Resource not found
-  - 500: Internal server error - Something went wrong on our end
-- Authentication: Yes
-- Authorization: Yes
-- Rate Limiting: Limit of 100 requests per hour. If the limit is exceeded, a message is returned asking the user to try again later.
+**Description:** Endpoint to manage user data.
+
+**Methods:** GET, POST, PUT, DELETE
+
+**Request Formats:**
+
+- **GET:** Retrieve user data by ID
+  - Params:
+    - id (string): The ID of the user to retrieve
+  - Description: This method retrieves user data by the user's ID.
+
+- **POST:** Create a new user
+  - Body:
+    - name (string): The user's name
+    - email (string): The user's email address
+    - password (string): The user's password
+  - Description: This method creates a new user.
+
+- **PUT:** Update an existing user
+  - Params:
+    - id (string): The ID of the user to update
+  - Body:
+    - name (string): The user's name
+    - email (string): The user's email address
+    - password (string): The user's password
+  - Description: This method updates an existing user.
+
+- **DELETE:** Delete a user by ID
+  - Params:
+    - id (string): The ID of the user to delete
+  - Description: This method deletes a user by the user's ID.
+
+**Response Formats:**
+
+- **GET:**
+  - 200:
+    - id (string): The ID of the user
+    - name (string): The user's name
+    - email (string): The user's email address
+  - 404:
+    - message (string): The error message
+  - Description: This response returns user data if the user is found, or an error message if the user is not found.
+
+- **POST:**
+  - 201:
+    - id (string): The ID of the new user
+    - message (string): The success message
+  - 400:
+    - message (string): The error message
+  - Description: This response creates a new user if the request is successful, or returns an error message if the request is unsuccessful.
+
+- **PUT:**
+  - 200:
+    - message (string): The success message
+  - 404:
+    - message (string): The error message
+  - Description: This response updates an existing user if the request is successful, or returns an error message if the request is unsuccessful.
+
+- **DELETE:**
+  - 200:
+    - message (string): The success message
+  - 404:
+    - message (string): The error message
+  - Description: This response deletes a user if the request is successful, or returns an error message if the request is unsuccessful.
+
+**Error Handling:**
+
+- 400: Bad request - Missing or invalid parameters
+- 401: Unauthorized - Authentication required
+- 404: Not found - Resource not found
+- 500: Internal server error - Something went wrong on our end
+
+**Authentication:** True
+
+**Authorization:** True
+
+**Rate Limiting:**
+
+- Limit: 100 requests per hour
+- Interval: Hour
+- Message: Rate limit exceeded, please try again later
 
 ### Definitions:
 
-There are no definitions or data models used in this API contract.
+There are no data models or definitions used in this API contract.
 
 ## Descriptive Wiki:
 
-### /users
+#### /users
 
-#### GET
+The `/users` endpoint is used for managing user data. This endpoint supports four HTTP methods: GET, POST, PUT, and DELETE. 
 
-This endpoint retrieves user data by ID. If the ID is not provided, it returns all user data. The response format includes the user's ID, name, and email. If the user is not found, a 404 error message is returned.
+##### GET
 
-Example Request:
+The GET method is used to retrieve user data by the user's ID. The `id` parameter is required to retrieve user data. If the user is found, the response will include the user's ID, name, and email address. If the user is not found, the response will include an error message.
 
-```
-GET /users?id=123
-```
+##### POST
 
-Example Response:
-
-```
-{
-  "id": "123",
-  "name": "John Doe",
-  "email": "johndoe@example.com"
-}
-```
-
-#### POST
-
-This endpoint creates a new user with properties name, email, and password. If the request body is missing or invalid, a 400 error message is returned. If the user is successfully created, a 201 message is returned.
-
-Example Request:
-
-```
-POST /users
-{
-  "name": "Jane Doe",
-  "email": "janedoe@example.com",
-  "password": "password123"
-}
-```
-
-Example Response:
-
-```
-{
-  "id": "456",
-  "message": "User created successfully"
-}
-```
-
-#### PUT
-
-This endpoint updates an existing user with properties name, email, and password. The user is identified by its ID. If the ID is not provided, a 404 error message is returned. If the user is successfully updated, a 200 message is returned.
-
-Example Request:
-
-```
-PUT /users?id=123
-{
-  "name": "Jane Doe",
-  "email": "janedoe@example.com",
-  "password": "newpassword123"
-}
-```
-
-Example Response:
-
-```
-{
-  "message": "User updated successfully"
-}
-```
-
-#### DELETE
-
-This endpoint deletes an existing user by ID. If the ID is not provided, a 404 error message is returned. If the user is successfully deleted, a 200 message is returned.
-
-Example Request:
-
-```
-DELETE /users?id=
+The POST method is used to create a
