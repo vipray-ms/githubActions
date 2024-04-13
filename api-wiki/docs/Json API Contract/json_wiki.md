@@ -3,8 +3,8 @@
 ```json title="JSON API Spec"
 {
     "endpoints": {
-        "/users": {
-            "description": "Endpoint to manage user data",
+        "/visitors": {
+            "description": "Endpoint to manage visitor data",
             "methods": [
                 "GET",
                 "POST",
@@ -16,7 +16,7 @@
                     "params": [
                         "id"
                     ],
-                    "description": "Retrieve user data by ID"
+                    "description": "Retrieve visitor data by ID"
                 },
                 "POST": {
                     "body": {
@@ -24,7 +24,7 @@
                         "email": "string",
                         "password": "string"
                     },
-                    "description": "Create a new user"
+                    "description": "Create a new visitor"
                 },
                 "PUT": {
                     "params": [
@@ -35,13 +35,13 @@
                         "email": "string",
                         "password": "string"
                     },
-                    "description": "Update an existing user"
+                    "description": "Update an existing visitor"
                 },
                 "DELETE": {
                     "params": [
                         "id"
                     ],
-                    "description": "Delete a user by ID"
+                    "description": "Delete a visitor by ID"
                 }
             },
             "responseFormats": {
