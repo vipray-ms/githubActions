@@ -2,159 +2,111 @@
 
 ## API Contract Details:
 
-The following is an API contract for managing user data:
+The API contract contains the following endpoint:
 
-```
-{
-  "endpoints": {
-    "/users": {
-      "description": "Endpoint to manage user data",
-      "methods": ["GET", "POST", "PUT", "DELETE"],
-      "requestFormats": {
-        "GET": {
-          "params": ["id"],
-          "description": "Retrieve user data by ID"
-        },
-        "POST": {
-          "body": {
-            "name": "string",
-            "email": "string",
-            "password": "string"
-          },
-          "description": "Create a new user"
-        },
-        "PUT": {
-          "params": ["id"],
-          "body": {
-            "name": "string",
-            "email": "string",
-            "password": "string"
-          },
-          "description": "Update an existing user"
-        },
-        "DELETE": {
-          "params": ["id"],
-          "description": "Delete a user by ID"
-        }
-      },
-      "responseFormats": {
-        "GET": {
-          "200": {
-            "id": "string",
-            "name": "string",
-            "email": "string"
-          },
-          "404": {
-            "message": "string"
-          }
-        },
-        "POST": {
-          "201": {
-            "id": "string",
-            "message": "string"
-          },
-          "400": {
-            "message": "string"
-          }
-        },
-        "PUT": {
-          "200": {
-            "message": "string"
-          },
-          "404": {
-            "message": "string"
-          }
-        },
-        "DELETE": {
-          "200": {
-            "message": "string"
-          },
-          "404": {
-            "message": "string"
-          }
-        }
-      },
-      "errorHandling": {
-        "400": "Bad request - Missing or invalid parameters",
-        "401": "Unauthorized - Authentication required",
-        "404": "Not found - Resource not found",
-        "500": "Internal server error - Something went wrong on our end"
-      },
-      "authentication": true,
-      "authorization": true,
-      "rateLimiting": {
-        "limit": 100,
-        "interval": "hour",
-        "message": "Rate limit exceeded, please try again later"
-      }
-    }
-  }
-}
-```
+### Endpoints:
 
-## Endpoints:
-
-### `/users`
+#### /users
 
 Endpoint to manage user data
 
-#### Methods:
+##### Methods:
+- GET
+- POST
+- PUT
+- DELETE
 
-- `GET`
-- `POST`
-- `PUT`
-- `DELETE`
+##### Request Formats:
+- GET: Retrieve user data by ID
+  - Params:
+    - id
+  - Description: Retrieve user data by ID
+- POST: Create a new user
+  - Body:
+    - name: string
+    - email: string
+    - password: string
+  - Description: Create a new user
+- PUT: Update an existing user
+  - Params:
+    - id
+  - Body:
+    - name: string
+    - email: string
+    - password: string
+  - Description: Update an existing user
+- DELETE: Delete a user by ID
+  - Params:
+    - id
+  - Description: Delete a user by ID
 
-#### Request Formats:
+##### Response Formats:
+- GET:
+  - 200: 
+    - id: string
+    - name: string
+    - email: string
+  - 404: 
+    - message: string
+- POST:
+  - 201: 
+    - id: string
+    - message: string
+  - 400: 
+    - message: string
+- PUT:
+  - 200: 
+    - message: string
+  - 404: 
+    - message: string
+- DELETE:
+  - 200: 
+    - message: string
+  - 404: 
+    - message: string
 
-##### `GET`
+##### Error Handling:
+- 400: Bad request - Missing or invalid parameters
+- 401: Unauthorized - Authentication required
+- 404: Not found - Resource not found
+- 500: Internal server error - Something went wrong on our end
 
-Retrieve user data by ID
+##### Authentication:
+- True
 
-- Parameters:
-  - `id`: ID of user to retrieve
+##### Authorization:
+- True
 
-##### `POST`
+##### Rate Limiting:
+- Limit: 100
+- Interval: hour
+- Message: Rate limit exceeded, please try again later
 
-Create a new user
+## Definitions:
+No definitions or data models are used in the API contract.
 
-- Body:
-  - `name`: Name of the user (string)
-  - `email`: Email address of the user (string)
-  - `password`: Password for the user (string)
+## Descriptive Wiki:
 
-##### `PUT`
+#### /users
+The `/users` endpoint is used to manage user data, including retrieving, creating, updating, and deleting user information.
 
-Update an existing user
+##### GET
+To retrieve user data, send a GET request to `/users` with the user ID as a parameter. If successful, the response will contain the user's ID, name, and email. If the user is not found, a 404 error will be returned.
 
-- Parameters:
-  - `id`: ID of user to update
-- Body:
-  - `name`: Name of the user (string)
-  - `email`: Email address of the user (string)
-  - `password`: Password for the user (string)
+##### POST
+To create a new user, send a POST request to `/users` with the user's name, email, and password in the body of the request. If successful, the response will contain the new user's ID and a success message. If there are missing or invalid parameters, a 400 error will be returned.
 
-##### `DELETE`
+##### PUT
+To update an existing user, send a PUT request to `/users` with the user ID as a parameter and the updated user information in the body of the request. If successful, the response will contain a success message. If the user is not found, a 404 error will be returned.
 
-Delete a user by ID
+##### DELETE
+To delete a user, send a DELETE request to `/users` with the user ID as a parameter. If successful, the response will contain a success message. If the user is not found, a 404 error will be returned.
 
-- Parameters:
-  - `id`: ID of user to delete
+##### Error Handling
+The `/users` endpoint returns various error messages depending on the error type. A 400 error will be returned if there are missing or invalid parameters. A 401 error will be returned if authentication is required. A 404 error will be returned if the user is not found. A 500 error will be returned if there is an internal server error.
 
-#### Response Formats:
+##### Authentication and Authorization
+Authentication and authorization are required to access the `/users` endpoint.
 
-##### `GET`
-
-- `200`: Success
-  - `id`: ID of the user (string)
-  - `name`: Name of the user (string)
-  - `email`: Email address of the user (string)
-- `404`: Not found
-  - `message`: Error message (string)
-
-##### `POST`
-
-- `201`: Created
-  - `id`: ID of the created user (string)
-  - `message`: Success message (string)
-- `400`: Bad request
+##### Rate Limiting
+A rate limit of 100 requests per hour is enforced on
