@@ -2,145 +2,176 @@
 
 ## API Contract Details:
 
-The following is a detailed explanation of the API contract. It includes a list of endpoints, their methods, request and response formats, error handling, and authentication and authorization details.
-
-```json
-{
-    "endpoints": {
-        "/users": {
-            "description": "Endpoint to manage user data",
-            "methods": ["GET", "POST", "PUT", "DELETE"],
-            "requestFormats": {
-                "GET": {
-                    "params": ["id"],
-                    "description": "Retrieve user data by ID"
-                },
-                "POST": {
-                    "body": {
-                        "name": "string",
-                        "email": "string",
-                        "password": "string"
-                    },
-                    "description": "Create a new user"
-                },
-                "PUT": {
-                    "params": ["id"],
-                    "body": {
-                        "name": "string",
-                        "email": "string",
-                        "password": "string"
-                    },
-                    "description": "Update an existing user"
-                },
-                "DELETE": {
-                    "params": ["id"],
-                    "description": "Delete a user by ID"
-                }
-            },
-            "responseFormats": {
-                "GET": {
-                    "200": {
-                        "id": "string",
-                        "name": "string",
-                        "email": "string"
-                    },
-                    "404": {
-                        "message": "string"
-                    }
-                },
-                "POST": {
-                    "201": {
-                        "id": "string",
-                        "message": "string"
-                    },
-                    "400": {
-                        "message": "string"
-                    }
-                },
-                "PUT": {
-                    "200": {
-                        "message": "string"
-                    },
-                    "404": {
-                        "message": "string"
-                    }
-                },
-                "DELETE": {
-                    "200": {
-                        "message": "string"
-                    },
-                    "404": {
-                        "message": "string"
-                    }
-                }
-            },
-            "errorHandling": {
-                "400": "Bad request - Missing or invalid parameters",
-                "401": "Unauthorized - Authentication required",
-                "404": "Not found - Resource not found",
-                "500": "Internal server error - Something went wrong on our end"
-            },
-            "authentication": true,
-            "authorization": true,
-            "rateLimiting": {
-                "limit": 100,
-                "interval": "hour",
-                "message": "Rate limit exceeded, please try again later"
-            }
-        }
-    }
-}
-```
+The API contract has one endpoint: `/users` which allows for the management of user data. This endpoint supports the following HTTP methods: `GET`, `POST`, `PUT`, and `DELETE`. 
 
 ### Endpoints:
 
-#### /users
+#### `/users`
 
-* **Description:** Endpoint to manage user data
-* **Methods:** GET, POST, PUT, DELETE
+Endpoint to manage user data
 
-**Request Formats:**
+**Methods:** `GET`, `POST`, `PUT`, `DELETE`
 
-* **GET**
-  * **Description:** Retrieve user data by ID
-  * **Parameters:** id (string)
-* **POST**
-  * **Description:** Create a new user
-  * **Body:**
-    * name (string)
-    * email (string)
-    * password (string)
-* **PUT**
-  * **Description:** Update an existing user
-  * **Parameters:** id (string)
-  * **Body:**
-    * name (string)
-    * email (string)
-    * password (string)
-* **DELETE**
-  * **Description:** Delete a user by ID
-  * **Parameters:** id (string)
+##### Request Formats
 
-**Response Formats:**
+* `GET`
+    * Description: Retrieve user data by ID
+    * Params: `id`
+* `POST`
+    * Description: Create a new user
+    * Body: 
+        ```
+        {
+            "name": "string",
+            "email": "string",
+            "password": "string"
+        }
+        ```
+* `PUT`
+    * Description: Update an existing user
+    * Params: `id`
+    * Body: 
+        ```
+        {
+            "name": "string",
+            "email": "string",
+            "password": "string"
+        }
+        ```
+* `DELETE`
+    * Description: Delete a user by ID
+    * Params: `id`
 
-* **GET**
-  * **200**
-    * id (string)
-    * name (string)
-    * email (string)
-  * **404**
-    * message (string)
-* **POST**
-  * **201**
-    * id (string)
-    * message (string)
-  * **400**
-    * message (string)
-* **PUT**
-  * **200**
-    * message (string)
-  * **404**
-    * message (string)
-* **DELETE**
-  * **200**
-   
+##### Response Formats
+
+* `GET`
+    * `200`: 
+        ```
+        {
+            "id": "string",
+            "name": "string",
+            "email": "string"
+        }
+        ```
+    * `404`: 
+        ```
+        {
+            "message": "string"
+        }
+        ```
+* `POST`
+    * `201`: 
+        ```
+        {
+            "id": "string",
+            "message": "string"
+        }
+        ```
+    * `400`: 
+        ```
+        {
+            "message": "string"
+        }
+        ```
+* `PUT`
+    * `200`: 
+        ```
+        {
+            "message": "string"
+        }
+        ```
+    * `404`: 
+        ```
+        {
+            "message": "string"
+        }
+        ```
+* `DELETE`
+    * `200`: 
+        ```
+        {
+            "message": "string"
+        }
+        ```
+    * `404`: 
+        ```
+        {
+            "message": "string"
+        }
+        ```
+
+##### Error Handling
+
+* `400`: Bad request - Missing or invalid parameters
+* `401`: Unauthorized - Authentication required
+* `404`: Not found - Resource not found
+* `500`: Internal server error - Something went wrong on our end
+
+##### Authentication
+
+Authentication is required to access this endpoint.
+
+##### Authorization
+
+Authorization is required to access this endpoint.
+
+##### Rate Limiting
+
+A rate limit of 100 requests per hour is enforced on this endpoint. If the rate limit is exceeded, a message will be returned: "Rate limit exceeded, please try again later".
+
+### Definitions:
+
+No definitions or data models are used in this API contract.
+
+## Descriptive Wiki:
+
+#### `/users`
+
+This endpoint allows for the management of user data. 
+
+##### `GET`
+
+This method retrieves user data by ID. The `id` parameter is required. 
+
+Example usage:
+```
+GET /users?id=123
+```
+
+##### `POST`
+
+This method creates a new user. The `name`, `email`, and `password` fields are required in the request body. 
+
+Example usage:
+```
+POST /users
+
+{
+    "name": "John Smith",
+    "email": "john.smith@example.com",
+    "password": "password123"
+}
+```
+
+##### `PUT`
+
+This method updates an existing user. The `id` parameter is required, and the `name`, `email`, and `password` fields are required in the request body. 
+
+Example usage:
+```
+PUT /users?id=123
+
+{
+    "name": "Jane Smith",
+    "email": "jane.smith@example.com",
+    "password": "newpassword123"
+}
+```
+
+##### `DELETE`
+
+This method deletes a user by ID. The `id` parameter is required.
+
+Example usage:
+```
+DELETE
