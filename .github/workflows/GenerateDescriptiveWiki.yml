@@ -44,5 +44,4 @@ jobs:
        cd api-wiki
        npm install
        npm run build
-       echo "GIT_USER=vipray-ms" >> $GITHUB_ENV
        npm run deploy
