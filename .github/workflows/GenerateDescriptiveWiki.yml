@@ -41,7 +41,7 @@ jobs:
         
     - name: Install dependencies
       run: |
-        cd api_wiki
+        cd api-wiki
         npm install
 
     - name: Build Docusaurus site
