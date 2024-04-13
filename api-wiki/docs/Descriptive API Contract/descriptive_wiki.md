@@ -2,117 +2,99 @@
 
 ## API Contract Details:
 
-The API contract defines the following endpoint:
+The API contract contains one endpoint, `/users`, which is used to manage user data. It supports the following HTTP methods: GET, POST, PUT, and DELETE.
 
-### Endpoint: /users
+### Endpoints:
 
-This endpoint is used to manage user data. It supports the following HTTP methods:
+#### `/users`
 
-* GET - Retrieve user data by ID
-* POST - Create a new user
-* PUT - Update an existing user
-* DELETE - Delete a user by ID
+- **Description:** Endpoint to manage user data
+- **Methods:** GET, POST, PUT, DELETE
 
-#### Request Formats:
+**Request Formats:**
 
-##### GET
+- **GET:**
+  - **Params:**
+    - `id`: ID of the user to retrieve
+  - **Description:** Retrieve user data by ID
+- **POST:**
+  - **Body:**
+    - `name`: string
+    - `email`: string
+    - `password`: string
+  - **Description:** Create a new user
+- **PUT:**
+  - **Params:**
+    - `id`: ID of the user to update
+  - **Body:**
+    - `name`: string
+    - `email`: string
+    - `password`: string
+  - **Description:** Update an existing user
+- **DELETE:**
+  - **Params:**
+    - `id`: ID of the user to delete
+  - **Description:** Delete a user by ID
 
-* Params:
-    * id - The ID of the user to retrieve
-* Description: Retrieves user data by ID
+**Response Formats:**
 
-##### POST
+- **GET:**
+  - **200:**
+    - `id`: string
+    - `name`: string
+    - `email`: string
+  - **404:**
+    - `message`: string
+- **POST:**
+  - **201:**
+    - `id`: string
+    - `message`: string
+  - **400:**
+    - `message`: string
+- **PUT:**
+  - **200:**
+    - `message`: string
+  - **404:**
+    - `message`: string
+- **DELETE:**
+  - **200:**
+    - `message`: string
+  - **404:**
+    - `message`: string
 
-* Body:
-    * name - A string representing the user's name
-    * email - A string representing the user's email
-    * password - A string representing the user's password
-* Description: Creates a new user
+**Error Handling:**
 
-##### PUT
+- **400:** Bad request - Missing or invalid parameters
+- **401:** Unauthorized - Authentication required
+- **404:** Not found - Resource not found
+- **500:** Internal server error - Something went wrong on our end
 
-* Params:
-    * id - The ID of the user to update
-* Body:
-    * name - A string representing the user's name
-    * email - A string representing the user's email
-    * password - A string representing the user's password
-* Description: Updates an existing user
+**Authentication:** True
 
-##### DELETE
+**Authorization:** True
 
-* Params:
-    * id - The ID of the user to delete
-* Description: Deletes a user by ID
+**Rate Limiting:**
 
-#### Response Formats:
+- **Limit:** 100 requests per hour
+- **Interval:** Hourly
+- **Message:** Rate limit exceeded, please try again later
 
-##### GET
-
-* 200 - Successful response containing user data
-    * id - A string representing the user's ID
-    * name - A string representing the user's name
-    * email - A string representing the user's email
-* 404 - Error response when user data is not found
-    * message - A string describing the error
-
-##### POST
-
-* 201 - Successful response containing user data and message
-    * id - A string representing the user's ID
-    * message - A string describing the success
-* 400 - Error response when request is missing or has invalid parameters
-    * message - A string describing the error
-
-##### PUT
-
-* 200 - Successful response containing message
-    * message - A string describing the success
-* 404 - Error response when user data is not found
-    * message - A string describing the error
-
-##### DELETE
-
-* 200 - Successful response containing message
-    * message - A string describing the success
-* 404 - Error response when user data is not found
-    * message - A string describing the error
-
-#### Error Handling:
-
-* 400 - Bad request - Missing or invalid parameters
-* 401 - Unauthorized - Authentication required
-* 404 - Not found - Resource not found
-* 500 - Internal server error - Something went wrong on our end
-
-#### Authentication:
-
-This endpoint requires authentication.
-
-#### Authorization:
-
-This endpoint requires authorization.
-
-#### Rate Limiting:
-
-This endpoint is rate limited to 100 requests per hour. If the limit is exceeded, the following message will be returned:
-* message - A string describing the rate limit exceeded error.
-
-## Definitions:
+### Definitions:
 
 There are no definitions or data models used in the API contract.
 
 ## Descriptive Wiki:
 
-The `/users` endpoint is used to manage user data. 
+The `/users` endpoint is used to manage user data in the system. It supports the following HTTP methods: GET, POST, PUT, and DELETE.
 
-To retrieve user data by ID, send a GET request to `/users?id=<user_id>`. If the user is found, the server will return a 200 status code along with the user data. If the user is not found, the server will return a 404 status code along with an error message.
+**GET Request:**
 
-To create a new user, send a POST request to `/users` with the following parameters in the request body:
-* name - A string representing the user's name
-* email - A string representing the user's email
-* password - A string representing the user's password
+To retrieve user data, send a GET request to `/users` with the user's ID in the `id` parameter. If the user is found, the server will respond with a 200 status code and a JSON object containing the user's ID, name, and email. If the user is not found, the server will respond with a 404 status code and a JSON object containing an error message.
 
-If the request is successful, the server will return a 201 status code along with the user data and a success message. If the request is invalid, the server will return a 400 status code along with an error message.
+**POST Request:**
 
-To update an existing user, send a PUT request to `/users?id=<user_id>` with the following parameters
+To create a new user, send a POST request to `/users` with a JSON object containing the user's name, email, and password in the request body. If the user is created successfully, the server will respond with a 201 status code and a JSON object containing the new user's ID and a success message. If there is an error creating the user, the server will respond with a 400 status code and a JSON object containing an error message.
+
+**PUT Request:**
+
+To update an existing user, send a PUT request to `/users` with the user's ID in the `id` parameter and a JSON object containing the updated user data in the request body. If the user is updated successfully, the server will respond with a 200 status code and a JSON object containing a success message. If
