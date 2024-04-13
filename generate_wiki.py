@@ -6,23 +6,23 @@ from openai import AzureOpenAI
 
 def convert_json_to_string(json_file):
     # Load JSON data
-    with open(json_file, 'r') as file:
+    with open(json_file, 'r', encoding='utf-8') as file:
         data = json.load(file)
-
     # Analyze the data and generate the wiki content
     # This is a placeholder as the actual processing would depend on the structure of your JSON data
-    wiki_content = str(data)  
-
-    return wiki_content
+    wiki_content = str(data) 
+    json_text = json.dumps(data, indent=4)
+    
+    return wiki_content, json_text
 
 
 def main():
     # Generate wiki content from JSON data
-    wiki_content = convert_json_to_string('api_contract.json')
+    wiki_content, json_text = convert_json_to_string('api_contract.json')
 
     client = AzureOpenAI(
-        azure_endpoint = os.environ.get('API_ENDPOINT'), 
-        api_key=os.environ.get('API_KEY'),  
+        azure_endpoint = "https://viptestopenapi.openai.azure.com/", 
+        api_key="80df3d71956e4e888eef7f33da71ee82",  
         api_version="2024-02-15-preview"
     )
 
@@ -31,7 +31,7 @@ def main():
         "content":"You are an AI assistant that translate JSON formatted API Contract into Descriptive document that explains each and every API in detail format. You return a .md file with all explanation."
         },
         {"role":"user",
-        "content":"## API Contract Details:\n\n"+wiki_content+"{Iterate through each endpoint in the API contract and provide details for each endpoint}\n\n### Endpoints:\n{List each endpoint with its path, methods, description, parameters, responses, etc.}\n\n{Provide additional details for each endpoint, such as examples, usage instructions, etc.}\n\n## Definitions:\n{List any definitions or data models used in the API contract with their properties and descriptions}\n\n## Descriptive Wiki:\n\n{Use the information provided above to generate descriptive content for each endpoint and definition}"
+        "content":"## API Contract Details:\n\n"+wiki_content+"{Iterate through each endpoint in the API contract and provide details for each endpoint}\n\n### Endpoints:\n{List each endpoint with its path, methods, description, parameters, responses, etc.}\n\n{Provide additional details for each endpoint, such as examples, usage instructions, etc.}\n\n## Definitions:\n{List any definitions or data models used in the API contract with their properties and descriptions}\n\n## Descriptive Wiki:\n\n{Use the information provided above to generate descriptive content for each endpoint and definition}.{Please check the response before sending that it follows all markup language rule}"
         }
     ]
         
@@ -48,9 +48,16 @@ def main():
 
     #print(completion.choices[0].message.content)
     # Open the file in write mode
-    with open('descriptive_wiki.md', 'w') as f:
+    with open('api-wiki/docs/Descriptive API Contract/descriptive_wiki.md', 'w') as f:
         # Write the variable's value to the file
+        f.write("# Descriptive API Spec\n\n")
         f.write(completion.choices[0].message.content)
+
+    with open('api-wiki/docs/Json API Contract/json_wiki.md', 'w') as f:
+        # Write the variable's value to the file
+        f.write("# JSON API Spec\n\n```json title=\"JSON API Spec\"\n")
+        f.write(json_text)
+        f.write("\n```")
 
 if __name__ == '__main__':
     main()
