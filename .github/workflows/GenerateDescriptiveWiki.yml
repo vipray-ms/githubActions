@@ -41,7 +41,7 @@ jobs:
         
     - name: Deploy Docusaurus to gh-pages
       env:
-          GIT_USER: "vipray-ms"
+          GIT_USER: "actions"
       run: |
        cd api-wiki
        npm install
