@@ -21,8 +21,8 @@ def main():
     wiki_content, json_text = convert_json_to_string('api_contract.json')
 
     client = AzureOpenAI(
-        azure_endpoint = "https://viptestopenapi.openai.azure.com/", 
-        api_key="80df3d71956e4e888eef7f33da71ee82",  
+        azure_endpoint = os.environ.get('API_ENDPOINT'), 
+        api_key = os.environ.get('API_KEY'),   
         api_version="2024-02-15-preview"
     )
 
