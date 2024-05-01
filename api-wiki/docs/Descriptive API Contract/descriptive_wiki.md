@@ -2,101 +2,97 @@
 
 ## API Contract Details:
 
-The following API Contract describes an endpoint `/visitors` that can be used to manage visitor data. This endpoint supports the HTTP methods `GET`, `POST`, `PUT`, and `DELETE`. The endpoint accepts and returns data in JSON format.
+This API contract contains one endpoint: `/visitors`. This endpoint is used to manage visitor data and allows for the following HTTP methods: GET, POST, PUT, and DELETE.
 
 ### Endpoints:
 
-#### `/visitors`
+#### /visitors
 
-This endpoint is used to manage visitor data.
+* Description: Endpoint to manage visitor data
+* Methods: GET, POST, PUT, DELETE
+* Authentication: Yes
+* Authorization: Yes
+* Rate Limiting: 100 requests per hour
+* Error Handling:
+    * 400: Bad request - Missing or invalid parameters
+    * 401: Unauthorized - Authentication required
+    * 404: Not found - Resource not found
+    * 500: Internal server error - Something went wrong on our end
 
-##### Methods:
+##### Request Formats
 
-- `GET`: Retrieve visitor data by ID
-- `POST`: Create a new visitor
-- `PUT`: Update an existing visitor
-- `DELETE`: Delete a visitor by ID
+###### GET
 
-##### Request Formats:
+* Params: id
+* Description: Retrieve visitor data by ID
 
-- `GET`: Retrieve visitor data by ID
-  - Params:
-    - `id`: ID of the visitor to retrieve
-  - Description: Retrieves visitor data by ID
+###### POST
 
-- `POST`: Create a new visitor
-  - Body:
-    - `name`: String representing the name of the visitor
-    - `email`: String representing the email of the visitor
-    - `password`: String representing the password of the visitor
-  - Description: Creates a new visitor with the given data
+* Body:
+    * name (string)
+    * email (string)
+    * password (string)
+* Description: Create a new visitor
 
-- `PUT`: Update an existing visitor
-  - Params:
-    - `id`: ID of the visitor to update
-  - Body:
-    - `name`: String representing the updated name of the visitor
-    - `email`: String representing the updated email of the visitor
-    - `password`: String representing the updated password of the visitor
-  - Description: Updates the visitor with the given ID with the updated data
+###### PUT
 
-- `DELETE`: Delete a visitor by ID
-  - Params:
-    - `id`: ID of the visitor to delete
-  - Description: Deletes the visitor with the given ID
+* Params: id
+* Body:
+    * name (string)
+    * email (string)
+    * password (string)
+* Description: Update an existing visitor
 
-##### Response Formats:
+###### DELETE
 
-- `GET`: Retrieve visitor data by ID
-  - `200`: Success. Returns the visitor data in the following format:
-    - `id`: String representing the ID of the visitor
-    - `name`: String representing the name of the visitor
-    - `email`: String representing the email of the visitor
-  - `404`: Not found. Returns an error message in the following format:
-    - `message`: String representing the error message
+* Params: id
+* Description: Delete a visitor by ID
 
-- `POST`: Create a new visitor
-  - `201`: Success. Returns the following message:
-    - `id`: String representing the ID of the newly created visitor
-    - `message`: String representing the success message
-  - `400`: Bad request. Returns an error message in the following format:
-    - `message`: String representing the error message
+##### Response Formats
 
-- `PUT`: Update an existing visitor
-  - `200`: Success. Returns the following message:
-    - `message`: String representing the success message
-  - `404`: Not found. Returns an error message in the following format:
-    - `message`: String representing the error message
+###### GET
 
-- `DELETE`: Delete a visitor by ID
-  - `200`: Success. Returns the following message:
-    - `message`: String representing the success message
-  - `404`: Not found. Returns an error message in the following format:
-    - `message`: String representing the error message
+* 200:
+    * id (string)
+    * name (string)
+    * email (string)
+* 404:
+    * message (string)
 
-##### Error Handling:
+###### POST
 
-- `400`: Bad request. Missing or invalid parameters.
-- `401`: Unauthorized. Authentication required.
-- `404`: Not found. Resource not found.
-- `500`: Internal server error. Something went wrong on our end.
+* 201:
+    * id (string)
+    * message (string)
+* 400:
+    * message (string)
 
-##### Authentication:
+###### PUT
 
-Authentication is required to access this endpoint.
+* 200:
+    * message (string)
+* 404:
+    * message (string)
 
-##### Authorization:
+###### DELETE
 
-Authorization is required to access this endpoint.
+* 200:
+    * message (string)
+* 404:
+    * message (string)
 
-##### Rate Limiting:
-
-A rate limit of 100 requests per hour is enforced for this endpoint. If the limit is exceeded, a message will be returned stating that the rate limit has been exceeded and to try again later.
-
-### Definitions:
+#### Definitions:
 
 There are no definitions or data models used in this API contract.
 
 ## Descriptive Wiki:
 
-The `/visitors` endpoint can be used to manage visitor data. This endpoint supports the HTTP methods `GET`, `POST
+The `/visitors` endpoint allows for the management of visitor data. The following HTTP methods are available: GET, POST, PUT, and DELETE.
+
+To retrieve visitor data by ID, make a GET request to `/visitors?id=<visitor_id>`. If the visitor exists, the server will respond with a 200 status code and the visitor's ID, name, and email. If the visitor does not exist, the server will respond with a 404 status code and a message indicating that the visitor was not found.
+
+To create a new visitor, make a POST request to `/visitors` with the visitor's name, email, and password in the request body. If the visitor is successfully created, the server will respond with a 201 status code and the visitor's ID and a message indicating that the visitor was successfully created. If the request is missing parameters or the parameters are invalid, the server will respond with a 400 status code and a message indicating that the request was invalid.
+
+To update an existing visitor, make a PUT request to `/visitors?id=<visitor_id>` with the visitor's new name, email, and password in the request body. If the visitor is successfully updated, the server will respond with a 200 status code and a message indicating that the visitor was successfully updated. If the visitor does not exist, the server will respond with a 404 status code and a message indicating that the visitor was not found.
+
+To delete a visitor by ID, make a DELETE request to `/visitors?id=<visitor_id>`. If the visitor is successfully deleted, the server will respond with a 200 status code and a message indicating that the visitor was successfully deleted. If the visitor does not exist, the server will respond with a 404 status code and a message indicating that the visitor was not found.
