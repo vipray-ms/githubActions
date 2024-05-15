@@ -2,97 +2,127 @@
 
 ## API Contract Details:
 
-This API contract contains one endpoint: `/visitors`. This endpoint is used to manage visitor data and allows for the following HTTP methods: GET, POST, PUT, and DELETE.
+The API contract defines the endpoints and data models for the NewRelic.Observability API. It is versioned as 2022-07-01-preview and hosted on management.azure.com. The API supports HTTPS protocol and JSON format for both input and output.
 
 ### Endpoints:
 
-#### /visitors
+#### GET /subscriptions/{subscriptionId}/providers/NewRelic.Observability/accounts
 
-* Description: Endpoint to manage visitor data
-* Methods: GET, POST, PUT, DELETE
-* Authentication: Yes
-* Authorization: Yes
-* Rate Limiting: 100 requests per hour
-* Error Handling:
-    * 400: Bad request - Missing or invalid parameters
-    * 401: Unauthorized - Authentication required
-    * 404: Not found - Resource not found
-    * 500: Internal server error - Something went wrong on our end
+List all the existing accounts
 
-##### Request Formats
+##### Parameters
+- subscriptionId (required): The ID of the subscription to operate on.
+- ApiVersionParameter: The version of the API to use.
+- UserEmailParameter (required): The email address of the user.
+- LocationParameter (required): The location for NewRelic.
 
-###### GET
+##### Responses
+- 200: ARM operation completed successfully.
+- default: An unexpected error response.
 
-* Params: id
-* Description: Retrieve visitor data by ID
+##### Examples
+- Accounts_List_MaximumSet_Gen.json
+- Accounts_List_MinimumSet_Gen.json
 
-###### POST
+#### GET /subscriptions/{subscriptionId}/providers/NewRelic.Observability/organizations
 
-* Body:
-    * name (string)
-    * email (string)
-    * password (string)
-* Description: Create a new visitor
+List all the existing organizations
 
-###### PUT
+##### Parameters
+- subscriptionId (required): The ID of the subscription to operate on.
+- ApiVersionParameter: The version of the API to use.
+- UserEmailParameter (required): The email address of the user.
+- LocationParameter (required): The location for NewRelic.
 
-* Params: id
-* Body:
-    * name (string)
-    * email (string)
-    * password (string)
-* Description: Update an existing visitor
+##### Responses
+- 200: ARM operation completed successfully.
+- default: An unexpected error response.
 
-###### DELETE
+##### Examples
+- Organizations_List_MaximumSet_Gen.json
+- Organizations_List_MinimumSet_Gen.json
 
-* Params: id
-* Description: Delete a visitor by ID
+#### GET /subscriptions/{subscriptionId}/providers/NewRelic.Observability/plans
 
-##### Response Formats
+List plans data
 
-###### GET
+##### Parameters
+- subscriptionId (required): The ID of the subscription to operate on.
+- ApiVersionParameter: The version of the API to use.
+- AccountIdParameter (required): The ID of the account.
+- OrganizationIdParameter (required): The ID of the organization.
 
-* 200:
-    * id (string)
-    * name (string)
-    * email (string)
-* 404:
-    * message (string)
+##### Responses
+- 200: ARM operation completed successfully.
+- default: An unexpected error response.
 
-###### POST
+##### Examples
+- Plans_List_MaximumSet_Gen.json
+- Plans_List_MinimumSet_Gen.json
 
-* 201:
-    * id (string)
-    * message (string)
-* 400:
-    * message (string)
+### Definitions:
 
-###### PUT
+#### AccountCreationSource
+- type: string
+- description: Source of Account creation
+- enum: LIFTR, NEWRELIC
 
-* 200:
-    * message (string)
-* 404:
-    * message (string)
+#### AccountIdParameter
+- type: object
+- properties: {}
+- description: Account Id parameter
 
-###### DELETE
+#### AccountInfo
+- type: object
+- properties:
+  - accountId: string
+  - ingestionKey: SecureString
+  - region: string
+- description: Account Info of the NewRelic account
 
-* 200:
-    * message (string)
-* 404:
-    * message (string)
+#### AccountProperties
+- type: object
+- properties:
+  - organizationId: string
+  - accountId: string
+  - accountName: string
+  - region: string
+- description: List of all the New relic accounts for the given user
 
-#### Definitions:
+#### AccountsListResponse
+- type: object
+- properties:
+  - value: array
+    - items: AccountResource
+  - nextLink: string
+- description: Response of get all accounts Operation.
 
-There are no definitions or data models used in this API contract.
+#### AccountResource
+- type: object
+- properties:
+  - properties: AccountProperties
+- description: The details of a account resource.
 
-## Descriptive Wiki:
+#### BillingCycle
+- type: string
+- description: Different usage type like YEARLY/MONTHLY
+- enum: YEARLY, MONTHLY, WEEKLY
 
-The `/visitors` endpoint allows for the management of visitor data. The following HTTP methods are available: GET, POST, PUT, and DELETE.
+#### BillingSource
+- type: string
+- description: Billing source
+- enum: AZURE, NEWRELIC
 
-To retrieve visitor data by ID, make a GET request to `/visitors?id=<visitor_id>`. If the visitor exists, the server will respond with a 200 status code and the visitor's ID, name, and email. If the visitor does not exist, the server will respond with a 404 status code and a message indicating that the visitor was not found.
+#### NewRelicAccountProperties
+- type: object
+- properties:
+  - userId: string
+  - accountInfo: AccountInfo
+  - organizationInfo: OrganizationInfo
+  - singleSignOnProperties: NewRelicSingleSignOnProperties
+- description: Properties of the NewRelic account
 
-To create a new visitor, make a POST request to `/visitors` with the visitor's name, email, and password in the request body. If the visitor is successfully created, the server will respond with a 201 status code and the visitor's ID and a message indicating that the visitor was successfully created. If the request is missing parameters or the parameters are invalid, the server will respond with a 400 status code and a message indicating that the request was invalid.
-
-To update an existing visitor, make a PUT request to `/visitors?id=<visitor_id>` with the visitor's new name, email, and password in the request body. If the visitor is successfully updated, the server will respond with a 200 status code and a message indicating that the visitor was successfully updated. If the visitor does not exist, the server will respond with a 404 status code and a message indicating that the visitor was not found.
-
-To delete a visitor by ID, make a DELETE request to `/visitors?id=<visitor_id>`. If the visitor is successfully deleted, the server will respond with a 200 status code and a message indicating that the visitor was successfully deleted. If the visitor does not exist, the server will respond with a 404 status code and a message indicating that the visitor was not found.
+#### NewRelicMonitorResource
+- type: object
+- properties:
+  - properties: MonitorProperties
