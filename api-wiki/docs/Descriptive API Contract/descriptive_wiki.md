@@ -2,127 +2,101 @@
 
 ## API Contract Details:
 
-The API contract defines the endpoints and data models for the NewRelic.Observability API. It is versioned as 2022-07-01-preview and hosted on management.azure.com. The API supports HTTPS protocol and JSON format for both input and output.
+The API contract is in JSON format and contains information about the NewRelic Observability API. It includes details about the API's title, version, host, security, paths, and definitions.
 
 ### Endpoints:
 
-#### GET /subscriptions/{subscriptionId}/providers/NewRelic.Observability/accounts
+#### List all the existing accounts
 
-List all the existing accounts
+```
+GET /subscriptions/subscriptionId/providers/NewRelic.Observability/accounts
+```
 
-##### Parameters
-- subscriptionId (required): The ID of the subscription to operate on.
-- ApiVersionParameter: The version of the API to use.
-- UserEmailParameter (required): The email address of the user.
-- LocationParameter (required): The location for NewRelic.
+**Description**: This endpoint returns a list of all the existing accounts for the given user.
 
-##### Responses
-- 200: ARM operation completed successfully.
-- default: An unexpected error response.
+**Parameters**:
 
-##### Examples
-- Accounts_List_MaximumSet_Gen.json
-- Accounts_List_MinimumSet_Gen.json
+- `ApiVersionParameter` - The version of the API (query parameter, required)
+- `SubscriptionIdParameter` - The subscription ID (query parameter, required)
+- `UserEmailParameter` - The user email (query parameter, required)
+- `LocationParameter` - The location for NewRelic (query parameter, required)
 
-#### GET /subscriptions/{subscriptionId}/providers/NewRelic.Observability/organizations
+**Responses**:
 
-List all the existing organizations
+- `200` - ARM operation completed successfully. Returns an object with a `value` property containing an array of `AccountResource` objects.
+- `default` - An unexpected error response. Returns an object with an `error` property containing information about the error.
 
-##### Parameters
-- subscriptionId (required): The ID of the subscription to operate on.
-- ApiVersionParameter: The version of the API to use.
-- UserEmailParameter (required): The email address of the user.
-- LocationParameter (required): The location for NewRelic.
+**Examples**:
 
-##### Responses
-- 200: ARM operation completed successfully.
-- default: An unexpected error response.
+- `Accounts_List_MaximumSet_Gen` - An example response for this endpoint with maximum set of values.
+- `Accounts_List_MinimumSet_Gen` - An example response for this endpoint with minimum set of values.
 
-##### Examples
-- Organizations_List_MaximumSet_Gen.json
-- Organizations_List_MinimumSet_Gen.json
+#### List all the existing organizations
 
-#### GET /subscriptions/{subscriptionId}/providers/NewRelic.Observability/plans
+```
+GET /subscriptions/subscriptionId/providers/NewRelic.Observability/organizations
+```
 
-List plans data
+**Description**: This endpoint returns a list of all the existing organizations for the given user.
 
-##### Parameters
-- subscriptionId (required): The ID of the subscription to operate on.
-- ApiVersionParameter: The version of the API to use.
-- AccountIdParameter (required): The ID of the account.
-- OrganizationIdParameter (required): The ID of the organization.
+**Parameters**:
 
-##### Responses
-- 200: ARM operation completed successfully.
-- default: An unexpected error response.
+- `ApiVersionParameter` - The version of the API (query parameter, required)
+- `SubscriptionIdParameter` - The subscription ID (query parameter, required)
+- `UserEmailParameter` - The user email (query parameter, required)
+- `LocationParameter` - The location for NewRelic (query parameter, required)
 
-##### Examples
-- Plans_List_MaximumSet_Gen.json
-- Plans_List_MinimumSet_Gen.json
+**Responses**:
+
+- `200` - ARM operation completed successfully. Returns an object with a `value` property containing an array of `OrganizationResource` objects.
+- `default` - An unexpected error response. Returns an object with an `error` property containing information about the error.
+
+**Examples**:
+
+- `Organizations_List_MaximumSet_Gen` - An example response for this endpoint with maximum set of values.
+- `Organizations_List_MinimumSet_Gen` - An example response for this endpoint with minimum set of values.
+
+#### List plans data
+
+```
+GET /subscriptions/subscriptionId/providers/NewRelic.Observability/plans
+```
+
+**Description**: This endpoint returns a list of plan data.
+
+**Parameters**:
+
+- `ApiVersionParameter` - The version of the API (query parameter, required)
+- `SubscriptionIdParameter` - The subscription ID (query parameter, required)
+- `AccountIdParameter` - The account ID (query parameter, required)
+- `OrganizationIdParameter` - The organization ID (query parameter, required)
+
+**Responses**:
+
+- `200` - ARM operation completed successfully. Returns an object with a `value` property containing an array of `PlanDataResource` objects.
+- `default` - An unexpected error response. Returns an object with an `error` property containing information about the error.
+
+**Examples**:
+
+- `Plans_List_MaximumSet_Gen` - An example response for this endpoint with maximum set of values.
+- `Plans_List_MinimumSet_Gen` - An example response for this endpoint with minimum set of values.
 
 ### Definitions:
 
 #### AccountCreationSource
-- type: string
-- description: Source of Account creation
-- enum: LIFTR, NEWRELIC
+
+Source of Account creation.
+
+- `LIFTR` - Account is created from LIFTR.
+- `NEWRELIC` - Account is created from NEWRELIC.
 
 #### AccountIdParameter
-- type: object
-- properties: {}
-- description: Account Id parameter
+
+Account ID parameter.
 
 #### AccountInfo
-- type: object
-- properties:
-  - accountId: string
-  - ingestionKey: SecureString
-  - region: string
-- description: Account Info of the NewRelic account
 
-#### AccountProperties
-- type: object
-- properties:
-  - organizationId: string
-  - accountId: string
-  - accountName: string
-  - region: string
-- description: List of all the New relic accounts for the given user
+Account information for the NewRelic account.
 
-#### AccountsListResponse
-- type: object
-- properties:
-  - value: array
-    - items: AccountResource
-  - nextLink: string
-- description: Response of get all accounts Operation.
-
-#### AccountResource
-- type: object
-- properties:
-  - properties: AccountProperties
-- description: The details of a account resource.
-
-#### BillingCycle
-- type: string
-- description: Different usage type like YEARLY/MONTHLY
-- enum: YEARLY, MONTHLY, WEEKLY
-
-#### BillingSource
-- type: string
-- description: Billing source
-- enum: AZURE, NEWRELIC
-
-#### NewRelicAccountProperties
-- type: object
-- properties:
-  - userId: string
-  - accountInfo: AccountInfo
-  - organizationInfo: OrganizationInfo
-  - singleSignOnProperties: NewRelicSingleSignOnProperties
-- description: Properties of the NewRelic account
-
-#### NewRelicMonitorResource
-- type: object
-- properties:
-  - properties: MonitorProperties
+- `accountId` - Account ID.
+- `ingestionKey` - Ingestion key of the

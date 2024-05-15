@@ -41,7 +41,7 @@
         }
     },
     "paths": {
-        "/subscriptions/{subscriptionId}/providers/NewRelic.Observability/accounts": {
+        "/subscriptions/subscriptionId/providers/NewRelic.Observability/accounts": {
             "get": {
                 "tags": [
                     "Accounts"
@@ -89,7 +89,7 @@
                 }
             }
         },
-        "/subscriptions/{subscriptionId}/providers/NewRelic.Observability/organizations": {
+        "/subscriptions/subscriptionId/providers/NewRelic.Observability/organizations": {
             "get": {
                 "tags": [
                     "Organizations"
@@ -137,7 +137,7 @@
                 }
             }
         },
-        "/subscriptions/{subscriptionId}/providers/NewRelic.Observability/plans": {
+        "/subscriptions/subscriptionId/providers/NewRelic.Observability/plans": {
             "get": {
                 "tags": [
                     "Plan"
